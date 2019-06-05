@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qtquickcontrols2.conf</file>
+        <file>pages/MainPage.qml</file>
+        <file>main.qml</file>
+        <file>controls/InfoGrid.qml</file>
+        <file>controls/LogButton.qml</file>
+    </qresource>
+</RCC>
