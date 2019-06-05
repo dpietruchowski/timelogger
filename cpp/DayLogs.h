@@ -54,9 +54,9 @@ private:
     TimeLogger* timeLogger_ = nullptr;
     QDate date_;
     TimelogsData timelogs_;
-    qint64 breakspan_;
-    qint64 workspan_;
-    qint64 undefinedspan_;
+    qint64 breakspan_ = 0;
+    qint64 workspan_ = 0;
+    qint64 undefinedspan_ = 0;
 };
 
 #endif // DAYLOGS_H

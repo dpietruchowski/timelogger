@@ -68,6 +68,10 @@ void TimelogsModel::setTimelogs(TimelogsData* timelogs)
                 [this] (int idx) { beginRemoveRows(QModelIndex(), idx, idx); });
         connect(timelogs_, &TimelogsData::postLogRemoved,
                 [this] { endRemoveRows(); });
+        connect(timelogs_, &TimelogsData::preClear,
+                [this] { beginResetModel(); });
+        connect(timelogs_, &TimelogsData::postClear,
+                [this] { endResetModel(); });
     }
 
     endResetModel();

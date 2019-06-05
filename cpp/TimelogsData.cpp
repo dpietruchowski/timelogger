@@ -19,7 +19,9 @@ int TimelogsData::size() const
 
 void TimelogsData::clear()
 {
+    emit preClear();
     timelogs_.clear();
+    emit postClear();
 }
 
 const Timelog& TimelogsData::operator[](int idx) const

@@ -33,6 +33,8 @@ public:
     int index(Timelogs::iterator iter) const;
 
 signals:
+    void preClear();
+    void postClear();
     void preLogAdded(int index);
     void postLogAdded();
     void preLogRemoved(int index);

@@ -32,7 +32,7 @@ ApplicationWindow {
             anchors.fill: parent
 
             Repeater {
-                model: ["Main Page"]
+                model: ["Main Page", "Day logs"]
                 ItemDelegate {
                     text: qsTr(modelData)
                     width: parent.width
@@ -50,6 +50,8 @@ ApplicationWindow {
         anchors.fill: parent
 
         MainPage {
+        }
+        DayLogsPage {
         }
     }
 }

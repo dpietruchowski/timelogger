@@ -18,9 +18,9 @@ int main(int argc, char *argv[])
     timeLogger.initDatabase();
     timeLogger.updateDayLogs();
 
-    qmlRegisterType<TimeLogger>("Classes", 1, 0, "Timelogger");
-    qmlRegisterType<DayLogs>("Classes", 1, 0, "DayLogs");
-    qmlRegisterType<TimelogsModel>("Classes", 1, 0, "TimelogsModel");
+    qmlRegisterType<TimeLogger>("Timelogger", 1, 0, "Timelogger");
+    qmlRegisterType<DayLogs>("Timelogger", 1, 0, "DayLogs");
+    qmlRegisterType<TimelogsModel>("Timelogger", 1, 0, "TimelogsModel");
     qRegisterMetaType<Timespan>();
     qRegisterMetaType<Timelog>();
 
