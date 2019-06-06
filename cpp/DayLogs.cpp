@@ -25,6 +25,7 @@ void DayLogs::loadFromDatabase()
         int id = model.record(i).value("id").toInt();
         timelogs_.add({id, timestamp, type});
     }
+    update();
 }
 
 void DayLogs::setDate(const QDate& date)
@@ -69,9 +70,15 @@ qint64 DayLogs::breakspan() const
     return breakspan_;
 }
 
+qint64 DayLogs::sumspan() const
+{
+    return workspan() + breakspan() + undefinedspan_;
+}
+
 void DayLogs::update()
 {
     countSpans();
+    changed();
 }
 
 void DayLogs::countSpans()

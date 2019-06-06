@@ -9,7 +9,7 @@
 class TimeLogger : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(DayLogs* daylogs READ daylogs)
+    Q_PROPERTY(DayLogs* daylogs READ daylogs NOTIFY daylogsChanged)
     Q_PROPERTY(QString status READ status NOTIFY todayLogsChanged)
     Q_PROPERTY(QString startTime READ startTime NOTIFY todayLogsChanged)
     Q_PROPERTY(QString lastLog READ lastLog NOTIFY todayLogsChanged)
@@ -38,6 +38,7 @@ public slots:
 
 signals:
     void todayLogsChanged();
+    void daylogsChanged();
 
     void logAdded(const Timelog& timelog);
     void logRemoved(int id);

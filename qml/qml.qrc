@@ -6,5 +6,6 @@
         <file>controls/InfoGrid.qml</file>
         <file>controls/LogButton.qml</file>
         <file>pages/DayLogsPage.qml</file>
+        <file>controls/TimeLoggerBar.qml</file>
     </qresource>
 </RCC>

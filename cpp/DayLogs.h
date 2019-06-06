@@ -21,6 +21,7 @@ class DayLogs: public QObject
     Q_PROPERTY(QDate date READ date WRITE setDate)
     Q_PROPERTY(TimeLogger* timelogger READ getTimeLogger WRITE setTimeLogger)
     Q_PROPERTY(TimelogsData* timelogs READ getTimelogs)
+    Q_PROPERTY(qint64 sumspan READ sumspan NOTIFY changed)
 
 public:
     DayLogs(): QObject(nullptr) {}
@@ -40,6 +41,7 @@ public:
 
     qint64 workspan() const;
     qint64 breakspan() const;
+    qint64 sumspan() const;
 
 signals:
     void preDateSet();

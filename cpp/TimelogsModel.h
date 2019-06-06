@@ -12,7 +12,7 @@ class TimelogsModel : public QAbstractListModel
 public:
     enum {
         TimelogRole = Qt::UserRole,
-        TimeSpanRole
+        TimespanRole
     };
     explicit TimelogsModel(QObject *parent = nullptr);
 

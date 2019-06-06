@@ -43,5 +43,11 @@ Page {
                 text: "Stop"
             }
         }
+
+        TimeLoggerBar {
+            Layout.alignment: Qt.AlignCenter
+            Layout.fillWidth: true
+            Layout.preferredHeight: 10;
+        }
     }
 }

@@ -25,7 +25,7 @@ QVariant TimelogsModel::data(const QModelIndex& index, int role) const
     switch(role) {
         case TimelogRole:
             return QVariant::fromValue(timelog);
-        case TimeSpanRole:
+        case TimespanRole:
             int nextIdx = idx + 1;
             if (nextIdx == timelogs_->size())
                 --nextIdx;
@@ -40,7 +40,7 @@ QHash<int, QByteArray> TimelogsModel::roleNames() const
 {
     QHash<int, QByteArray> names;
     names[TimelogRole] = "timelog";
-    names[TimeSpanRole] = "timespan";
+    names[TimespanRole] = "timespan";
 
     return names;
 }
