@@ -18,11 +18,14 @@ int main(int argc, char *argv[])
     timeLogger.initDatabase();
     timeLogger.updateDayLogs();
 
+    qRegisterMetaType<Timespan::Status>("TimespanStatus");
+    qRegisterMetaType<Timelog::Type>("TimelogType");
+
     qmlRegisterType<TimeLogger>("Timelogger", 1, 0, "Timelogger");
     qmlRegisterType<DayLogs>("Timelogger", 1, 0, "DayLogs");
     qmlRegisterType<TimelogsModel>("Timelogger", 1, 0, "TimelogsModel");
-    qRegisterMetaType<Timespan>();
-    qRegisterMetaType<Timelog>();
+    qmlRegisterUncreatableType<Timespan>("Timelogger", 1, 0, "Timespan", "Not creatable as it is an enum type");
+    qmlRegisterUncreatableType<Timelog>("Timelogger", 1, 0, "Timelog", "Not creatable as it is an enum type");
 
     QQmlApplicationEngine engine;
     engine.rootContext()->setContextProperty("timeLogger", &timeLogger);

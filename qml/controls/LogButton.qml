@@ -2,6 +2,8 @@ import QtQuick 2.0
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 
+import Timelogger 1.0
+
 RoundButton {
     property string type
 
@@ -11,8 +13,8 @@ RoundButton {
     font.pixelSize: Qt.application.font.pixelSize * 1.7
     onClicked: {
         if (type === "Work")
-            timeLogger.logNow(0)
+            timeLogger.logNow(Timelog.Start)
         if (type === "Break")
-            timeLogger.logNow(1)
+            timeLogger.logNow(Timelog.Stop)
     }
 }

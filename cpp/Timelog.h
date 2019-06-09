@@ -20,7 +20,7 @@ public:
         Start,
         Stop
     };
-    Q_ENUMS(Type)
+    Q_ENUM(Type)
 
     static Type otherType(Type type);
 

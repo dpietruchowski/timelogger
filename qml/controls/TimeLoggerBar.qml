@@ -15,7 +15,7 @@ Row {
         delegate: Rectangle {
             width: row.width * (timespan.span / timeLogger.daylogs.sumspan)
             height: 10
-            color: timespan.status === 0 ? "black" : (timespan.status === 1 ? "red" : "grey")
+            color: timespan.status === Timespan.Work ? "black" : (timespan.status === Timespan.Break ? "red" : "grey")
         }
     }
 }

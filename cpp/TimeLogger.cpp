@@ -78,15 +78,15 @@ QString TimeLogger::breakspan() const
     return time.toString();
 }
 
-void TimeLogger::logNow(int logType)
+void TimeLogger::logNow(Timelog::Type logType)
 {
     addLog(QDateTime::currentDateTime(), logType);
     emit todayLogsChanged();
 }
 
-void TimeLogger::addLog(const QDateTime& datetime, int logType)
+void TimeLogger::addLog(const QDateTime& datetime, Timelog::Type logType)
 {
-    Timelog log = {-1, datetime, Timelog::Type(logType)};
+    Timelog log = {-1, datetime, logType};
     QSqlQuery query;
     query.prepare(QString("insert into ") + TimeLogger::kTableName + " (type, timestamp) values (?, ?)");
     query.addBindValue(log.type == Timelog::Start ? "Start" : "Stop");

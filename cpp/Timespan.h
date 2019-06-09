@@ -13,7 +13,7 @@ public:
         Break,
         Undefined
     };
-    Q_ENUMS(Status)
+    Q_ENUM(Status)
 
     qint64 span;
     Status status;
