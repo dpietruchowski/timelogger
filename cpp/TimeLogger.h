@@ -32,8 +32,8 @@ public:
     QString breakspan() const;
 
 public slots:
-    void logNow(Timelog::Type logType);
-    void addLog(const QDateTime& datetime, Timelog::Type logType);
+    int logNow(Timelog::Type logType);
+    int addLog(const QDateTime& datetime, Timelog::Type logType);
     void removeLog(int id);
 
 signals:

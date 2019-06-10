@@ -78,13 +78,14 @@ QString TimeLogger::breakspan() const
     return time.toString();
 }
 
-void TimeLogger::logNow(Timelog::Type logType)
+int TimeLogger::logNow(Timelog::Type logType)
 {
-    addLog(QDateTime::currentDateTime(), logType);
+    int result = addLog(QDateTime::currentDateTime(), logType);
     emit todayLogsChanged();
+    return result;
 }
 
-void TimeLogger::addLog(const QDateTime& datetime, Timelog::Type logType)
+int TimeLogger::addLog(const QDateTime& datetime, Timelog::Type logType)
 {
     Timelog log = {-1, datetime, logType};
     QSqlQuery query;
@@ -93,10 +94,11 @@ void TimeLogger::addLog(const QDateTime& datetime, Timelog::Type logType)
     query.addBindValue(log.timestamp);
     if (!query.exec()) {
         qDebug() << query.lastError().text();
-        return;
+        return -1;
     }
     log.id = query.lastInsertId().toInt();
     emit logAdded(log);
+    return log.id;
 }
 
 void TimeLogger::removeLog(int id)
