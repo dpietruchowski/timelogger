@@ -7,6 +7,8 @@ struct Timespan {
     Q_GADGET
     Q_PROPERTY(qint64 span MEMBER span)
     Q_PROPERTY(Status status MEMBER status)
+    Q_PROPERTY(QString spanStr READ spanStr)
+    Q_PROPERTY(QString statusStr READ statusStr)
 public:
     enum Status {
         Work,
@@ -17,6 +19,9 @@ public:
 
     qint64 span;
     Status status;
+
+    QString spanStr() const;
+    QString statusStr() const;
 };
 
 Q_DECLARE_METATYPE(Timespan)

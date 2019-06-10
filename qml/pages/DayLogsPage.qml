@@ -46,20 +46,33 @@ Page {
                             height: parent.height
 
                             Text {
-                                Layout.preferredWidth: 50
+                                Layout.preferredWidth: 90
                                 text: model.timelog.id
                                 horizontalAlignment: Text.AlignHCenter
                                 verticalAlignment: Text.AlignVCenter
                             }
                             Text {
+                                Layout.preferredWidth: 100
                                 Layout.fillWidth: true
                                 text: model.timelog.time
                                 horizontalAlignment: Text.AlignHCenter
                                 verticalAlignment: Text.AlignVCenter
                             }
                             Text {
-                                Layout.preferredWidth: 50
+                                Layout.preferredWidth: 100
                                 text: model.timelog.typeStr
+                                horizontalAlignment: Text.AlignHCenter
+                                verticalAlignment: Text.AlignVCenter
+                            }
+                            Text {
+                                Layout.preferredWidth: 100
+                                text: model.timespan.spanStr
+                                horizontalAlignment: Text.AlignHCenter
+                                verticalAlignment: Text.AlignVCenter
+                            }
+                            Text {
+                                Layout.preferredWidth: 100
+                                text: model.timespan.statusStr
                                 horizontalAlignment: Text.AlignHCenter
                                 verticalAlignment: Text.AlignVCenter
                             }
@@ -87,8 +100,8 @@ Page {
 
         Calendar {
             Layout.alignment: Qt.AlignCenter
-            Layout.fillWidth: true
-            Layout.fillHeight: true
+            Layout.preferredWidth: 300
+            Layout.preferredHeight: 300
             id: calendar
         }
     }
