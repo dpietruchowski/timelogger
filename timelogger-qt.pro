@@ -21,7 +21,9 @@ SOURCES += \
     cpp/TimeLogger.cpp \
     cpp/DayLogs.cpp \
     cpp/TimelogsData.cpp \
-    cpp/TimelogsModel.cpp
+    cpp/TimelogsModel.cpp \
+    cpp/VectorSignals.cpp \
+    cpp/VectorModel.cpp
 
 RESOURCES += qml/qml.qrc
 
@@ -42,6 +44,9 @@ HEADERS += \
     cpp/TimeLogger.h \
     cpp/DayLogs.h \
     cpp/TimelogsData.h \
-    cpp/TimelogsModel.h
+    cpp/TimelogsModel.h \
+    cpp/VectorSignals.h \
+    cpp/VectorData.h \
+    cpp/VectorModel.h
 
 DISTFILES +=

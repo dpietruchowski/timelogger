@@ -1,7 +1,7 @@
 #include "TimelogsModel.h"
 
 TimelogsModel::TimelogsModel(QObject* parent)
-    : QAbstractListModel(parent)
+    : VectorModel(parent)
 {
 
 }
@@ -52,27 +52,6 @@ TimelogsData* TimelogsModel::timelogs() const
 
 void TimelogsModel::setTimelogs(TimelogsData* timelogs)
 {
-    beginResetModel();
-
-    if (timelogs_)
-        timelogs_->disconnect();
-
     timelogs_ = timelogs;
-
-    if (timelogs_) {
-        connect(timelogs_, &TimelogsData::preLogAdded,
-                [this] (int idx) { beginInsertRows(QModelIndex(), idx, idx); });
-        connect(timelogs_, &TimelogsData::postLogAdded,
-                [this] { endInsertRows(); });
-        connect(timelogs_, &TimelogsData::preLogRemoved,
-                [this] (int idx) { beginRemoveRows(QModelIndex(), idx, idx); });
-        connect(timelogs_, &TimelogsData::postLogRemoved,
-                [this] { endRemoveRows(); });
-        connect(timelogs_, &TimelogsData::preClear,
-                [this] { beginResetModel(); });
-        connect(timelogs_, &TimelogsData::postClear,
-                [this] { endResetModel(); });
-    }
-
-    endResetModel();
+    setVector(timelogs_);
 }

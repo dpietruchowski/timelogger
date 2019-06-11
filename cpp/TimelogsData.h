@@ -4,47 +4,23 @@
 #include <vector>
 
 #include "Timelog.h"
+#include "VectorData.h"
 
-class TimelogsData : public QObject
+class TimelogsData : public VectorData<Timelog>
 {
-    Q_OBJECT
-
-    using Timelogs = std::vector<Timelog>;
+    using Timelogs = VectorData<Timelog>;
 public:
     TimelogsData() = default;
 
-    // std vector methods
-    Timelogs::const_iterator begin() const;
-    Timelogs::const_iterator end() const;
-    Timelogs::iterator begin();
-    Timelogs::iterator end();
-    int size() const;
-    void clear();
-    const Timelog& operator[](int idx) const;
-    const Timelog& front() const;
-    const Timelog& back() const;
-
-
-    // my methods
     void add(const Timelog& log);
     void remove(int id);
     Timelog* timelog(int id);
-    std::optional<Timelogs::iterator> contains(int id);
-    int index(Timelogs::iterator iter) const;
+    std::optional<Timelogs::Iterator> contains(int id);
+    int index(Timelogs::Iterator iter) const;
 
-signals:
-    void preClear();
-    void postClear();
-    void preLogAdded(int index);
-    void postLogAdded();
-    void preLogRemoved(int index);
-    void postLogRemoved();
 
 private:
-    Timelogs::iterator findTimelog(int id);
-
-private:
-    Timelogs timelogs_;
+    Timelogs::Iterator findTimelog(int id);
 };
 
 #endif // TIMELOGS_H

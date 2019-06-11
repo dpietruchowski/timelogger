@@ -1,11 +1,10 @@
 #ifndef TIMELOGMODEL_H
 #define TIMELOGMODEL_H
 
-#include <QAbstractListModel>
-
+#include "VectorModel.h"
 #include "TimelogsData.h"
 
-class TimelogsModel : public QAbstractListModel
+class TimelogsModel : public VectorModel
 {
     Q_OBJECT
     Q_PROPERTY(TimelogsData* timelogs READ timelogs WRITE setTimelogs)

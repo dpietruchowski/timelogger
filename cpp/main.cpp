@@ -20,10 +20,12 @@ int main(int argc, char *argv[])
 
     qRegisterMetaType<Timespan::Status>("TimespanStatus");
     qRegisterMetaType<Timelog::Type>("TimelogType");
+    qRegisterMetaType<TimelogsData*>("TimelogsData*");
 
     qmlRegisterType<TimeLogger>("Timelogger", 1, 0, "Timelogger");
     qmlRegisterType<DayLogs>("Timelogger", 1, 0, "DayLogs");
     qmlRegisterType<TimelogsModel>("Timelogger", 1, 0, "TimelogsModel");
+
     qmlRegisterUncreatableType<Timespan>("Timelogger", 1, 0, "Timespan", "Not creatable as it is an enum type");
     qmlRegisterUncreatableType<Timelog>("Timelogger", 1, 0, "Timelog", "Not creatable as it is an enum type");
 
