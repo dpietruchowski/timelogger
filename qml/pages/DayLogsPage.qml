@@ -47,32 +47,32 @@ Page {
 
                             Text {
                                 Layout.preferredWidth: 90
-                                text: model.timelog.id
+                                text: model.item.id
                                 horizontalAlignment: Text.AlignHCenter
                                 verticalAlignment: Text.AlignVCenter
                             }
                             Text {
                                 Layout.preferredWidth: 100
                                 Layout.fillWidth: true
-                                text: model.timelog.time
+                                text: model.item.time
                                 horizontalAlignment: Text.AlignHCenter
                                 verticalAlignment: Text.AlignVCenter
                             }
                             Text {
                                 Layout.preferredWidth: 100
-                                text: model.timelog.typeStr
+                                text: model.item.typeStr
                                 horizontalAlignment: Text.AlignHCenter
                                 verticalAlignment: Text.AlignVCenter
                             }
                             Text {
                                 Layout.preferredWidth: 100
-                                text: model.timespan.spanStr
+                                text: model.item.spanStr
                                 horizontalAlignment: Text.AlignHCenter
                                 verticalAlignment: Text.AlignVCenter
                             }
                             Text {
                                 Layout.preferredWidth: 100
-                                text: model.timespan.statusStr
+                                text: model.item.statusStr
                                 horizontalAlignment: Text.AlignHCenter
                                 verticalAlignment: Text.AlignVCenter
                             }

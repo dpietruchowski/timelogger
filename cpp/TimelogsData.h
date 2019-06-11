@@ -1,8 +1,6 @@
 #ifndef TIMELOGS_H
 #define TIMELOGS_H
 
-#include <vector>
-
 #include "Timelog.h"
 #include "VectorData.h"
 
