@@ -1,24 +1,34 @@
 import QtQuick 2.9
 import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.3
 
 import "pages"
 
 ApplicationWindow {
     id: window
     visible: true
-    minimumWidth: 640
+    minimumWidth: 1000
     minimumHeight: 480
-    width: 640
+    width: 1000
     height: 480
     title: qsTr("Tabs")
 
     header: ToolBar {
-        ToolButton {
-            id: toolButton
-            text: "\u2630"
-            font.pixelSize: Qt.application.font.pixelSize * 1.6
-            onClicked: {
-                drawer.open()
+        RowLayout {
+            anchors.fill: parent
+            ToolButton {
+                Layout.alignment: Qt.AlignLeft
+                id: toolButton
+                text: "\u2630"
+                font.pixelSize: Qt.application.font.pixelSize * 1.6
+                onClicked: {
+                    drawer.open()
+                }
+            }
+            Text {
+                Layout.alignment: Qt.AlignCenter
+                text: Qt.formatDateTime(new Date(), "dd MMM yyyy")
+                font.pixelSize: Qt.application.font.pixelSize * 1.6
             }
         }
     }
