@@ -9,13 +9,13 @@ Row {
     spacing: 1
     Repeater {
         id: rep
-        model: TimelogsModel {
-            timelogs: timeLogger.daylogs.timelogs
+        model: TimespansModel {
+            timespans: timeLogger.daylogs.timespans
         }
         delegate: Rectangle {
-            width: row.width * (timespan.span / timeLogger.daylogs.sumspan)
+            width: row.width * (item.span / timeLogger.daylogs.sumspan)
             height: 10
-            color: timespan.status === Timespan.Work ? "black" : (timespan.status === Timespan.Break ? "red" : "grey")
+            color: item.status === Timespan.Work ? "black" : (item.status === Timespan.Break ? "red" : "grey")
         }
     }
 }

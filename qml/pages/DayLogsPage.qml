@@ -64,18 +64,6 @@ Page {
                                 horizontalAlignment: Text.AlignHCenter
                                 verticalAlignment: Text.AlignVCenter
                             }
-                            Text {
-                                Layout.preferredWidth: 100
-                                text: model.item.spanStr
-                                horizontalAlignment: Text.AlignHCenter
-                                verticalAlignment: Text.AlignVCenter
-                            }
-                            Text {
-                                Layout.preferredWidth: 100
-                                text: model.item.statusStr
-                                horizontalAlignment: Text.AlignHCenter
-                                verticalAlignment: Text.AlignVCenter
-                            }
                         }
                     }
                     ItemDelegate {
@@ -91,7 +79,7 @@ Page {
                         }
 
                         onClicked: {
-                            timeLogger.removeLog(model.timelog.id)
+                            timeLogger.removeLog(model.item.id)
                         }
                     }
                 }

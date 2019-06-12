@@ -7,6 +7,7 @@
 #include "Timespan.h"
 #include "DayLogs.h"
 #include "TimelogsModel.h"
+#include "TimespansModel.h"
 
 int main(int argc, char *argv[])
 {
@@ -21,10 +22,12 @@ int main(int argc, char *argv[])
     qRegisterMetaType<Timespan::Status>("TimespanStatus");
     qRegisterMetaType<Timelog::Type>("TimelogType");
     qRegisterMetaType<TimelogsData*>("TimelogsData*");
+    qRegisterMetaType<TimespansData*>("TimespansData*");
 
     qmlRegisterType<TimeLogger>("Timelogger", 1, 0, "Timelogger");
     qmlRegisterType<DayLogs>("Timelogger", 1, 0, "DayLogs");
     qmlRegisterType<TimelogsModel>("Timelogger", 1, 0, "TimelogsModel");
+    qmlRegisterType<TimespansModel>("Timelogger", 1, 0, "TimespansModel");
 
     qmlRegisterUncreatableType<Timespan>("Timelogger", 1, 0, "Timespan", "Not creatable as it is an enum type");
     qmlRegisterUncreatableType<Timelog>("Timelogger", 1, 0, "Timelog", "Not creatable as it is an enum type");

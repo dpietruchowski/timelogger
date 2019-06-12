@@ -12,6 +12,7 @@
 #include "Timelog.h"
 #include "Timespan.h"
 #include "TimelogsData.h"
+#include "TimespansData.h"
 
 class TimeLogger;
 
@@ -21,10 +22,11 @@ class DayLogs: public QObject
     Q_PROPERTY(QDate date READ date WRITE setDate)
     Q_PROPERTY(TimeLogger* timelogger READ getTimeLogger WRITE setTimeLogger)
     Q_PROPERTY(TimelogsData* timelogs READ getTimelogs)
+    Q_PROPERTY(TimespansData* timespans READ getTimespans)
     Q_PROPERTY(qint64 sumspan READ sumspan NOTIFY changed)
 
 public:
-    DayLogs(): QObject(nullptr) {}
+    DayLogs();
     ~DayLogs() override {}
 
     void loadFromDatabase();
@@ -36,6 +38,7 @@ public:
     void setTimeLogger(TimeLogger* timelogger);
 
     TimelogsData* getTimelogs();
+    TimespansData* getTimespans();
 
     const TimelogsData& timelogs() const;
 
@@ -56,6 +59,7 @@ private:
     TimeLogger* timeLogger_ = nullptr;
     QDate date_;
     TimelogsData timelogs_;
+    TimespansData timespans_;
     qint64 breakspan_ = 0;
     qint64 workspan_ = 0;
     qint64 undefinedspan_ = 0;

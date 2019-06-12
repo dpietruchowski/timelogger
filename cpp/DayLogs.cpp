@@ -5,6 +5,55 @@
 
 #include "TimeLogger.h"
 
+DayLogs::DayLogs(): QObject(nullptr)
+{
+    connect(&timelogs_, &TimelogsData::postItemAdded,
+            [this] (int idx) {
+        if (timelogs_.size() < 2)
+            return;
+
+        int lastIdx = timelogs_.size() - 1;
+        int insertedIdx = -1;
+        if (0 <= idx && idx < lastIdx) {
+            insertedIdx = idx;
+        } else if (idx == lastIdx) {
+            insertedIdx = idx - 1;
+        } else {
+            qWarning("Timelog added out of range: idx (%d) where size (%d)", idx, timelogs_.size());
+        }
+
+        Timespan timespan = timelogs_[insertedIdx].timespan(timelogs_[insertedIdx+1]);
+        timespans_.insert(insertedIdx, timespan);
+
+        if (0 < idx && idx < lastIdx) {
+            int prevIdx = insertedIdx - 1;
+            timespans_[prevIdx] = timelogs_[prevIdx].timespan(timelogs_[prevIdx+1]);
+        }
+    });
+    connect(&timelogs_, &TimelogsData::postItemRemoved,
+            [this] (int idx) {
+        if (timelogs_.size() < 2)
+            return;
+
+        int lastIdx = timelogs_.size() - 1;
+        int removedIdx = -1;
+        if (0 <= idx && idx < lastIdx) {
+            removedIdx = idx;
+        } else if (idx == lastIdx) {
+            removedIdx = idx - 1;
+        } else {
+            qWarning("Timelog removed out of range: idx (%d) where size (%d)", idx, timelogs_.size());
+        }
+
+        timespans_.erase(removedIdx);
+
+        if (0 < idx && idx < lastIdx) {
+            int prevIdx = removedIdx - 1;
+            timespans_[prevIdx] = timelogs_[prevIdx].timespan(timelogs_[prevIdx+1]);
+        }
+    });
+}
+
 void DayLogs::loadFromDatabase()
 {
     QSqlQuery query;
@@ -53,6 +102,11 @@ void DayLogs::setTimeLogger(TimeLogger* timelogger)
 TimelogsData* DayLogs::getTimelogs()
 {
     return &timelogs_;
+}
+
+TimespansData* DayLogs::getTimespans()
+{
+    return &timespans_;
 }
 
 const TimelogsData& DayLogs::timelogs() const

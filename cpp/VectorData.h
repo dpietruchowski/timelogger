@@ -39,6 +39,10 @@ public:
         return data_[idx];
     }
 
+    Type& operator[](int idx) {
+        return data_[idx];
+    }
+
     const Type& front() const {
         return data_.front();
     }
