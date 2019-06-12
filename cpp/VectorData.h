@@ -1,6 +1,7 @@
 #ifndef VECTORDATA_H
 #define VECTORDATA_H
 
+#include <iterator>
 #include <vector>
 
 #include "VectorSignals.h"
@@ -51,16 +52,44 @@ public:
         return static_cast<int>(pos - begin());
     }
 
+    typename Vector::iterator position(int index)
+    {
+        return std::next(begin(), index);
+    }
+
+    typename Vector::const_iterator position(int index) const
+    {
+        return std::next(begin(), index);
+    }
+
     typename Vector::iterator push_back(const Type& value) {
         emitPreItemAdded(size());
         data_.push_back(value);
         emitPostItemAdded();
     }
 
+    typename Vector::iterator erase(int idx) {
+        emitPreItemRemoved(idx);
+        data_.erase(position(idx));
+        emitPostItemRemoved();
+    }
+
     typename Vector::iterator erase(typename Vector::iterator pos) {
         emitPreItemRemoved(index(pos));
         data_.erase(pos);
         emitPostItemRemoved();
+    }
+
+    typename Vector::iterator insert(int idx, const Type& value) {
+        emitPreItemAdded(idx);
+        data_.insert(position(idx), value);
+        emitPostItemAdded();
+    }
+
+    typename Vector::iterator insert(typename Vector::iterator pos, const Type& value) {
+        emitPreItemAdded(index(pos));
+        data_.insert(pos, value);
+        emitPostItemAdded();
     }
 
     void clear() {
