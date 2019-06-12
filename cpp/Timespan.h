@@ -17,8 +17,8 @@ public:
     };
     Q_ENUM(Status)
 
-    qint64 span;
-    Status status;
+    qint64 span = 0;
+    Status status = Status::Undefined;
 
     QString spanStr() const;
     QString statusStr() const;

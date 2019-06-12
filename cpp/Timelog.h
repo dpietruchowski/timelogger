@@ -24,9 +24,9 @@ public:
 
     static Type otherType(Type type);
 
-    int id;
+    int id = -1;
     QDateTime timestamp;
-    Type type;
+    Type type = Type::Start;
 
     QString date() { return timestamp.date().toString(); }
     QString time() { return timestamp.time().toString(); }
