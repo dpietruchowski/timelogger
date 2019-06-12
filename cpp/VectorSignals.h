@@ -12,18 +12,18 @@ public:
 protected:
     void emitPreClear();
     void emitPostClear();
-    void emitPreItemAdded(int index);
-    void emitPostItemAdded();
-    void emitPreItemRemoved(int index);
-    void emitPostItemRemoved();
+    void emitPreItemAdded(int idx);
+    void emitPostItemAdded(int idx);
+    void emitPreItemRemoved(int idx);
+    void emitPostItemRemoved(int idx);
 
 signals:
     void preClear();
     void postClear();
-    void preItemAdded(int index);
-    void postItemAdded();
-    void preItemRemoved(int index);
-    void postItemRemoved();
+    void preItemAdded(int idx);
+    void postItemAdded(int idx);
+    void preItemRemoved(int idx);
+    void postItemRemoved(int idx);
 };
 
 #endif // VECTORSIGNALS_H

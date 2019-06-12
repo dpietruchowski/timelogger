@@ -52,44 +52,47 @@ public:
         return static_cast<int>(pos - begin());
     }
 
-    typename Vector::iterator position(int index)
+    typename Vector::iterator position(int idx)
     {
-        return std::next(begin(), index);
+        return std::next(begin(), idx);
     }
 
-    typename Vector::const_iterator position(int index) const
+    typename Vector::const_iterator position(int idx) const
     {
-        return std::next(begin(), index);
+        return std::next(begin(), idx);
     }
 
     typename Vector::iterator push_back(const Type& value) {
-        emitPreItemAdded(size());
+        int idx = size();
+        emitPreItemAdded(idx);
         data_.push_back(value);
-        emitPostItemAdded();
+        emitPostItemAdded(idx);
     }
 
     typename Vector::iterator erase(int idx) {
         emitPreItemRemoved(idx);
         data_.erase(position(idx));
-        emitPostItemRemoved();
+        emitPostItemRemoved(idx);
     }
 
     typename Vector::iterator erase(typename Vector::iterator pos) {
-        emitPreItemRemoved(index(pos));
+        int idx = index(pos);
+        emitPreItemRemoved(idx);
         data_.erase(pos);
-        emitPostItemRemoved();
+        emitPostItemRemoved(idx);
     }
 
     typename Vector::iterator insert(int idx, const Type& value) {
         emitPreItemAdded(idx);
         data_.insert(position(idx), value);
-        emitPostItemAdded();
+        emitPostItemAdded(idx);
     }
 
     typename Vector::iterator insert(typename Vector::iterator pos, const Type& value) {
-        emitPreItemAdded(index(pos));
+        int idx = index(pos);
+        emitPreItemAdded(idx);
         data_.insert(pos, value);
-        emitPostItemAdded();
+        emitPostItemAdded(idx);
     }
 
     void clear() {

@@ -10,22 +10,22 @@ void VectorSignals::emitPostClear()
     emit postClear();
 }
 
-void VectorSignals::emitPreItemAdded(int index)
+void VectorSignals::emitPreItemAdded(int idx)
 {
-    emit preItemAdded(index);
+    emit preItemAdded(idx);
 }
 
-void VectorSignals::emitPostItemAdded()
+void VectorSignals::emitPostItemAdded(int idx)
 {
-    emit postItemAdded();
+    emit postItemAdded(idx);
 }
 
-void VectorSignals::emitPreItemRemoved(int index)
+void VectorSignals::emitPreItemRemoved(int idx)
 {
-    emit preItemRemoved(index);
+    emit preItemRemoved(idx);
 }
 
-void VectorSignals::emitPostItemRemoved()
+void VectorSignals::emitPostItemRemoved(int idx)
 {
-    emit postItemRemoved();
+    emit postItemRemoved(idx);
 }
