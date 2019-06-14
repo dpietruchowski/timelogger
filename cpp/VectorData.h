@@ -39,10 +39,6 @@ public:
         return data_[idx];
     }
 
-    Type& operator[](int idx) {
-        return data_[idx];
-    }
-
     const Type& front() const {
         return data_.front();
     }
@@ -103,6 +99,15 @@ public:
         emitPreClear();
         data_.clear();
         emitPostClear();
+    }
+
+    void set(int idx, const Type& value) {
+        data_[idx] = value;
+        emitDataChanged(idx);
+    }
+
+    void set(typename Vector::iterator pos, const Type& value) {
+        set(index(pos));
     }
 
 private:

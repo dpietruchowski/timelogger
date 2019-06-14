@@ -92,6 +92,8 @@ void VectorModel<Type>::setVector(VectorData<Type>* vector)
                 [this] { beginResetModel(); });
         connect(vector_, &VectorSignals::postClear,
                 [this] { endResetModel(); });
+        connect(vector_, &VectorSignals::dataChanged,
+                [this] (int idx) { emit dataChanged(index(idx), index(idx)); });
     }
 
     endResetModel();

@@ -29,3 +29,8 @@ void VectorSignals::emitPostItemRemoved(int idx)
 {
     emit postItemRemoved(idx);
 }
+
+void VectorSignals::emitDataChanged(int idx)
+{
+    emit dataChanged(idx);
+}

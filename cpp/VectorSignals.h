@@ -16,6 +16,7 @@ protected:
     void emitPostItemAdded(int idx);
     void emitPreItemRemoved(int idx);
     void emitPostItemRemoved(int idx);
+    void emitDataChanged(int idx);
 
 signals:
     void preClear();
@@ -24,6 +25,7 @@ signals:
     void postItemAdded(int idx);
     void preItemRemoved(int idx);
     void postItemRemoved(int idx);
+    void dataChanged(int idx);
 };
 
 #endif // VECTORSIGNALS_H
