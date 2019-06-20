@@ -12,6 +12,7 @@ class VectorData: public VectorSignals
     using Vector = std::vector<Type>;
 public:
     using Iterator = typename std::vector<Type>::iterator;
+    using ConstIterator = typename std::vector<Type>::const_iterator;
 
     VectorData() = default;
 

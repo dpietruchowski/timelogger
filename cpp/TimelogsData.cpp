@@ -25,6 +25,15 @@ Timelog* TimelogsData::timelog(int id)
         return nullptr;
 }
 
+const Timelog* TimelogsData::timelog(int id) const
+{
+    auto result = findTimelog(id);
+    if (result != end())
+        return &(*result);
+    else
+        return nullptr;
+}
+
 std::optional<TimelogsData::Timelogs::Iterator> TimelogsData::contains(int id)
 {
     auto result = findTimelog(id);
@@ -41,7 +50,16 @@ int TimelogsData::index(Timelogs::Iterator iter) const
 
 TimelogsData::Timelogs::Iterator TimelogsData::findTimelog(int id)
 {
+    auto IdPredicate = [id] (const Timelog& log) {
+        return log.id == id;
+    };
 
+    auto result = std::find_if(begin(), end(), IdPredicate);
+    return result;
+}
+
+TimelogsData::ConstIterator TimelogsData::findTimelog(int id) const
+{
     auto IdPredicate = [id] (const Timelog& log) {
         return log.id == id;
     };
