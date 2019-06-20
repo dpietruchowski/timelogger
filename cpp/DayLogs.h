@@ -45,6 +45,7 @@ public:
     TimespansData* getTimespans();
 
     const TimelogsData& timelogs() const;
+    const TimespansData& timespans() const;
 
     Timespan workspan() const;
     Timespan breakspan() const;

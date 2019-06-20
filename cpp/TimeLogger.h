@@ -27,6 +27,7 @@ public slots:
     int logNow(Timelog::Type logType);
     int addLog(const QDateTime& datetime, Timelog::Type logType);
     void removeLog(int id);
+    void onTimer();
 
 signals:
     void todayLogsChanged();
@@ -36,7 +37,12 @@ signals:
     void logRemoved(int id);
 
 private:
+    void removeCurrentLog();
+    void addCurrentLog();
+
+private:
     DayLogs dayLogs_;
+    int currentLogId = -1;
 };
 
 #endif // TIMELOGGER_H

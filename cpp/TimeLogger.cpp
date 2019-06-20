@@ -1,6 +1,7 @@
 #include "TimeLogger.h"
 
 #include <QDebug>
+#include <QTimerEvent>
 
 #include <QSql>
 #include <QSqlDatabase>
@@ -43,14 +44,16 @@ DayLogs* TimeLogger::daylogs()
 
 QString TimeLogger::status() const
 {
-    if (dayLogs_.timelogs().size() == 0)
+    if (dayLogs_.timespans().size() == 0)
         return "Break";
-    return dayLogs_.lastLog().type == Timelog::Start ? "Work" : "Break";
+    return dayLogs_.timespans().back().status == Timespan::Work ? "Work" : "Break";
 }
 
 int TimeLogger::logNow(Timelog::Type logType)
 {
+    removeCurrentLog();
     int result = addLog(QDateTime::currentDateTime(), logType);
+    addCurrentLog();
     return result;
 }
 
@@ -81,5 +84,34 @@ void TimeLogger::removeLog(int id)
         return;
     }
     emit logRemoved(id);
+    emit todayLogsChanged();
+    if (id == currentLogId)
+        currentLogId = -1;
+}
+
+void TimeLogger::onTimer()
+{
+    removeCurrentLog();
+    addCurrentLog();
+}
+
+void TimeLogger::removeCurrentLog()
+{
+    if (currentLogId != -1) {
+        emit logRemoved(currentLogId);
+        emit todayLogsChanged();
+        currentLogId = -1;
+    }
+}
+
+void TimeLogger::addCurrentLog()
+{
+    Timelog::Type type = Timelog::Start;
+    if (daylogs()->timelogs().size() > 0)
+        type = Timelog::otherType(daylogs()->timelogs().back().type);
+
+    Timelog log = {-2, QDateTime::currentDateTime(), type};
+    currentLogId = log.id;
+    emit logAdded(log);
     emit todayLogsChanged();
 }

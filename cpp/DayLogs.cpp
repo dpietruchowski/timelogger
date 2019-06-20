@@ -7,25 +7,24 @@
 
 DayLogs::DayLogs(): QObject(nullptr)
 {
-    auto MapIdxTimelogToTimespan = [this] (int idx) {
+    auto MapIdxTimelogToTimespan = [this] (int idx, int lastIdx) {
         if (timelogs_.size() < 2)
             return -1;
 
-        int lastIdx = timelogs_.size() - 1;
         int retIdx = -1;
         if (0 <= idx && idx < lastIdx) {
             retIdx = idx;
         } else if (idx == lastIdx) {
             retIdx = idx - 1;
         } else {
-            qWarning("Timelogs idx out of range: idx (%d) where size (%d)", idx, timelogs_.size());
+            qWarning("Timelogs idx out of range: idx (%d) where last idx (%d)", idx, lastIdx);
         }
         return retIdx;
     };
     connect(&timelogs_, &TimelogsData::postItemAdded,
             [this, MapIdxTimelogToTimespan] (int idx) {
         int lastIdx = timelogs_.size() - 1;
-        int insertedIdx = MapIdxTimelogToTimespan(idx);
+        int insertedIdx = MapIdxTimelogToTimespan(idx, lastIdx);
         if (insertedIdx == -1) return;
 
         Timespan timespan = timelogs_[insertedIdx].timespan(timelogs_[insertedIdx+1]);
@@ -39,8 +38,8 @@ DayLogs::DayLogs(): QObject(nullptr)
     });
     connect(&timelogs_, &TimelogsData::postItemRemoved,
             [this,  MapIdxTimelogToTimespan] (int idx) {
-        int lastIdx = timelogs_.size() - 1;
-        int removedIdx = MapIdxTimelogToTimespan(idx);
+        int lastIdx = timelogs_.size();
+        int removedIdx = MapIdxTimelogToTimespan(idx, lastIdx);
         if (removedIdx == -1) {
             timespans_.clear();
             return;
@@ -112,6 +111,11 @@ TimespansData* DayLogs::getTimespans()
 const TimelogsData& DayLogs::timelogs() const
 {
     return timelogs_;
+}
+
+const TimespansData&DayLogs::timespans() const
+{
+    return timespans_;
 }
 
 Timespan DayLogs::workspan() const

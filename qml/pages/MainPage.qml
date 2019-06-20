@@ -17,6 +17,11 @@ Page {
         padding: 10
     }
 
+    Timer {
+        interval: 1000; running: true; repeat: true
+        onTriggered: timeLogger.onTimer()
+    }
+
 
     ColumnLayout {
         anchors.left: parent.left
