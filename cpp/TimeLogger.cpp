@@ -45,43 +45,12 @@ QString TimeLogger::status() const
 {
     if (dayLogs_.timelogs().size() == 0)
         return "Break";
-    return dayLogs_.timelogs().back().type == Timelog::Start ? "Work" : "Break";
-}
-
-QString TimeLogger::startTime() const
-{
-    if (dayLogs_.timelogs().size() == 0)
-        return "Not started yet";
-    return dayLogs_.timelogs().front().timestamp.time().toString();
-}
-
-QString TimeLogger::lastLog() const
-{
-    if (dayLogs_.timelogs().size() == 0)
-        return "Not started yet";
-    QString format = "%1 %2";
-    Timelog timelog = dayLogs_.timelogs().back();
-    return format.arg(timelog.timestamp.time().toString()).arg(timelog.type == Timelog::Start ? "Start" : "Stop");
-}
-
-QString TimeLogger::workspan() const
-{
-    QTime time(0, 0, 0, 0);
-    time = time.addMSecs(dayLogs_.workspan());
-    return time.toString();
-}
-
-QString TimeLogger::breakspan() const
-{
-    QTime time(0, 0, 0, 0);
-    time = time.addMSecs(dayLogs_.breakspan());
-    return time.toString();
+    return dayLogs_.lastLog().type == Timelog::Start ? "Work" : "Break";
 }
 
 int TimeLogger::logNow(Timelog::Type logType)
 {
     int result = addLog(QDateTime::currentDateTime(), logType);
-    emit todayLogsChanged();
     return result;
 }
 
@@ -98,6 +67,7 @@ int TimeLogger::addLog(const QDateTime& datetime, Timelog::Type logType)
     }
     log.id = query.lastInsertId().toInt();
     emit logAdded(log);
+    emit todayLogsChanged();
     return log.id;
 }
 
@@ -111,4 +81,5 @@ void TimeLogger::removeLog(int id)
         return;
     }
     emit logRemoved(id);
+    emit todayLogsChanged();
 }

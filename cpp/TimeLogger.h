@@ -11,10 +11,6 @@ class TimeLogger : public QObject
     Q_OBJECT
     Q_PROPERTY(DayLogs* daylogs READ daylogs NOTIFY daylogsChanged)
     Q_PROPERTY(QString status READ status NOTIFY todayLogsChanged)
-    Q_PROPERTY(QString startTime READ startTime NOTIFY todayLogsChanged)
-    Q_PROPERTY(QString lastLog READ lastLog NOTIFY todayLogsChanged)
-    Q_PROPERTY(QString workspan READ workspan NOTIFY todayLogsChanged)
-    Q_PROPERTY(QString breakspan READ breakspan NOTIFY todayLogsChanged)
 public:
     static constexpr const char* kTableName = "timelogs";
 
@@ -26,10 +22,6 @@ public:
     DayLogs* daylogs();
 
     QString status() const;
-    QString startTime() const;
-    QString lastLog() const;
-    QString workspan() const;
-    QString breakspan() const;
 
 public slots:
     int logNow(Timelog::Type logType);

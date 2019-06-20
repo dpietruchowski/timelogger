@@ -26,6 +26,8 @@ Page {
 
         InfoGrid {
             id: infoGrid
+            dayLogs: timeLogger.daylogs
+            status: timeLogger.status
             Layout.alignment: Qt.AlignCenter
         }
 

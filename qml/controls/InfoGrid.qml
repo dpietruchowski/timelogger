@@ -2,34 +2,38 @@ import QtQuick 2.0
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 
+import Timelogger 1.0
+
 Item {
+    property DayLogs dayLogs
+    property string status
     width: 200; height: 50
 
     ColumnLayout {
         Row {
             spacing: 10
             Label { text: "Status:" }
-            Label { text: timeLogger.status }
+            Label { text: status }
         }
         Row {
             spacing: 10
             Label { text: "Start time:" }
-            Label { text: timeLogger.startTime }
+            Label { text: dayLogs.startTime.time }
         }
         Row {
             spacing: 10
             Label { text: "Last log:" }
-            Label { text: timeLogger.lastLog }
+            Label { text: dayLogs.lastLog.time }
         }
         Row {
             spacing: 10
             Label { text: "Sum of work" }
-            Label { text: timeLogger.workspan }
+            Label { text: dayLogs.workspan.spanStr }
         }
         Row {
             spacing: 10
             Label { text: "Sum of break" }
-            Label { text: timeLogger.breakspan }
+            Label { text: dayLogs.breakspan.spanStr }
         }
     }
 }

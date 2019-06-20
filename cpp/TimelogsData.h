@@ -16,7 +16,6 @@ public:
     std::optional<Timelogs::Iterator> contains(int id);
     int index(Timelogs::Iterator iter) const;
 
-
 private:
     Timelogs::Iterator findTimelog(int id);
 };

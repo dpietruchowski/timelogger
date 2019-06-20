@@ -41,7 +41,10 @@ DayLogs::DayLogs(): QObject(nullptr)
             [this,  MapIdxTimelogToTimespan] (int idx) {
         int lastIdx = timelogs_.size() - 1;
         int removedIdx = MapIdxTimelogToTimespan(idx);
-        if (removedIdx == -1) return;
+        if (removedIdx == -1) {
+            timespans_.clear();
+            return;
+        }
 
         timespans_.erase(removedIdx);
 
@@ -111,19 +114,33 @@ const TimelogsData& DayLogs::timelogs() const
     return timelogs_;
 }
 
-qint64 DayLogs::workspan() const
+Timespan DayLogs::workspan() const
 {
-    return workspan_;
+    return {workspan_, Timespan::Work};
 }
 
-qint64 DayLogs::breakspan() const
+Timespan DayLogs::breakspan() const
 {
-    return breakspan_;
+    return {breakspan_, Timespan::Break};
 }
 
-qint64 DayLogs::sumspan() const
+Timespan DayLogs::sumspan() const
 {
-    return workspan() + breakspan() + undefinedspan_;
+    return {workspan_ + breakspan_ + undefinedspan_, Timespan::Undefined};
+}
+
+Timelog DayLogs::startTime() const
+{
+    if (timelogs_.size() > 0)
+        return timelogs_.front();
+    return Timelog();
+}
+
+Timelog DayLogs::lastLog() const
+{
+    if (timelogs_.size() > 0)
+        return timelogs_.back();
+    return Timelog();
 }
 
 void DayLogs::update()
