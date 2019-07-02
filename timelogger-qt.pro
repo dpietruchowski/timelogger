@@ -16,16 +16,16 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     cpp/main.cpp \
-    cpp/Timelog.cpp \
-    cpp/Timespan.cpp \
+    cpp/timelog/Timelog.cpp \
+    cpp/timelog/Timespan.cpp \
     cpp/TimeLogger.cpp \
-    cpp/DayLogs.cpp \
-    cpp/TimelogsData.cpp \
-    cpp/TimelogsModel.cpp \
-    cpp/VectorSignals.cpp \
-    cpp/VectorModel.cpp \
-    cpp/TimespansData.cpp \
-    cpp/TimespansModel.cpp
+    cpp/timelog/DayLogs.cpp \
+    cpp/timelog/TimelogsData.cpp \
+    cpp/timelog/TimelogsModel.cpp \
+    cpp/utils/VectorSignals.cpp \
+    cpp/utils/VectorModel.cpp \
+    cpp/timelog/TimespansData.cpp \
+    cpp/timelog/TimespansModel.cpp
 
 RESOURCES += qml/qml.qrc
 
@@ -41,16 +41,21 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    cpp/Timelog.h \
-    cpp/Timespan.h \
+    cpp/timelog/Timelog.h \
+    cpp/timelog/Timespan.h \
     cpp/TimeLogger.h \
-    cpp/DayLogs.h \
-    cpp/TimelogsData.h \
-    cpp/TimelogsModel.h \
-    cpp/VectorSignals.h \
-    cpp/VectorData.h \
-    cpp/VectorModel.h \
-    cpp/TimespansData.h \
-    cpp/TimespansModel.h
+    cpp/timelog/DayLogs.h \
+    cpp/timelog/TimelogsData.h \
+    cpp/timelog/TimelogsModel.h \
+    cpp/utils/VectorSignals.h \
+    cpp/utils/VectorData.h \
+    cpp/utils/VectorModel.h \
+    cpp/timelog/TimespansData.h \
+    cpp/timelog/TimespansModel.h
+
+INCLUDEPATH += \
+    cpp \
+    cpp/utils \
+    cpp/timelog
 
 DISTFILES +=
