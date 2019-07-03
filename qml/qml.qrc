@@ -7,5 +7,10 @@
         <file>controls/LogButton.qml</file>
         <file>pages/DayLogsPage.qml</file>
         <file>controls/TimeLoggerBar.qml</file>
+        <file>pages/TasksPage.qml</file>
+        <file>controls/TaskList.qml</file>
+        <file>controls/BorderTextEdit.qml</file>
+        <file>dialogs/TaskDialog.qml</file>
+        <file>dialogs/TaskViewDialog.qml</file>
     </qresource>
 </RCC>

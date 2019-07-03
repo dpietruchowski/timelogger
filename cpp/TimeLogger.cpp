@@ -8,6 +8,8 @@
 #include <QSqlQuery>
 #include <QSqlError>
 
+#include "TaskManager.h"
+
 TimeLogger::TimeLogger()
 {
 }
@@ -29,6 +31,7 @@ void TimeLogger::initDatabase()
         }
     }
 
+    TaskManager::createTable(db);
 }
 
 void TimeLogger::updateDayLogs()

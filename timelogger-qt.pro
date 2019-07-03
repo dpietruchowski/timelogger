@@ -15,7 +15,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    cpp/TaskManager.cpp \
     cpp/main.cpp \
+    cpp/task/Task.cpp \
+    cpp/task/Tasks.cpp \
+    cpp/task/TasksData.cpp \
+    cpp/task/TasksModel.cpp \
     cpp/timelog/Timelog.cpp \
     cpp/timelog/Timespan.cpp \
     cpp/TimeLogger.cpp \
@@ -41,6 +46,11 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
+    cpp/TaskManager.h \
+    cpp/task/Task.h \
+    cpp/task/Tasks.h \
+    cpp/task/TasksData.h \
+    cpp/task/TasksModel.h \
     cpp/timelog/Timelog.h \
     cpp/timelog/Timespan.h \
     cpp/TimeLogger.h \
@@ -56,6 +66,7 @@ HEADERS += \
 INCLUDEPATH += \
     cpp \
     cpp/utils \
-    cpp/timelog
+    cpp/timelog \
+    cpp/task
 
 DISTFILES +=

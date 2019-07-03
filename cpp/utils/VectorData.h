@@ -108,7 +108,7 @@ public:
     }
 
     void set(typename Vector::iterator pos, const Type& value) {
-        set(index(pos));
+        set(index(pos), value);
     }
 
 private:
